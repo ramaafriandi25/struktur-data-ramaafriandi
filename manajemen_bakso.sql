@@ -18,16 +18,26 @@ CREATE TABLE pegawai (
     status_aktif BOOLEAN DEFAULT TRUE
 );
 
--- Tabel Barang
 CREATE TABLE barang (
-    barang_id INT AUTO_INCREMENT PRIMARY KEY,
-    nama_barang VARCHAR(100) NOT NULL,
-    stok INT NOT NULL,
-    harga_beli DECIMAL(10,2) NOT NULL,
-    harga_jual DECIMAL(10,2) NOT NULL,
-    stok_minimum INT NOT NULL
+  barang_id INT PRIMARY KEY,
+  nama_barang VARCHAR(100),
+  stok INT,
+  satuan VARCHAR(20),
+  harga INT
 );
 
+
+CREATE TABLE stok_pegawai (
+    stok_id INT AUTO_INCREMENT PRIMARY KEY,
+    pegawai_id INT NOT NULL,
+    bakso_halus INT NOT NULL DEFAULT 0,
+    bakso_kasar INT NOT NULL DEFAULT 0,
+    bakso_puyuh INT NOT NULL DEFAULT 0,
+    tahu INT NOT NULL DEFAULT 0,
+    somay INT NOT NULL DEFAULT 0,
+    FOREIGN KEY (pegawai_id) REFERENCES pegawai(pegawai_id)
+);
+`stok_pegawai`
 -- Tabel Penjualan
 CREATE TABLE penjualan (
     penjualan_id INT AUTO_INCREMENT PRIMARY KEY,
